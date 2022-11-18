@@ -1,0 +1,2 @@
+Enter a vector of data to split: The first half of the vector is:  <    13   20   56 < The second half of the vector is:  <    101   200     5 --- > 
+Enter a vector of data to split: The first half of the vector is:    13   20   56 > The second half of the vector is:    101   200     5

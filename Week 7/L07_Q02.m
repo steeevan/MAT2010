@@ -1,0 +1,166 @@
+% Estevan Anguiano
+% L07_Q02
+
+
+
+% Main function
+function [] = L07_Q02()
+    
+    % Program Description: 
+    %   This program will generate a n x m matrix given n,m by user. Each
+    %   enntry in the matrix will be a random integer between [min, max] given
+    %   by user. Then it wwill ask a series of operations to perfom on the
+    %   selcted row, by multiplyng with scalar and then adding it with another
+    %   row. This can help manually perform row reduction.
+    %
+    % 
+    %
+    % Variables: 
+    %   +  matrix : the genereate matrix with users data
+    %   + rowOperate : holds the row get basic row operations
+    %   + s : the scalar to multiply scalar
+    %   + rowi : selected to operate row
+    %   + rowj : selected to operate row
+    %   
+    clc % clears screen
+
+    % Generated matrix using the user-defined function then prints matrix
+    matrix = get_matrix();
+    print_matrix(matrix);
+
+    % Ask user to get basic row operations then performs operation and
+    % returns into matrix and prints matrix
+    [rowOperate,s] = get_basic_row_op_data();
+    matrix = do_basic_row_op(matrix,rowOperate,s);
+    print_matrix(matrix);
+
+    % Ask user for replace row operation and then performs it, printint out
+    % results after
+    [rowi,rowj, s] = get_replacement_row_op_data();
+    matrix = do_replacement_row_op(matrix,rowi,rowj,s);
+    print_matrix(matrix);
+
+     % Ask user for replace row operation and then performs it, printint out
+    % results after
+    [rowi,rowj, s] = get_replacement_row_op_data();
+    matrix = do_replacement_row_op(matrix,rowi,rowj,s);
+    print_matrix(matrix);
+
+     % Ask user for replace row operation and then performs it, printint out
+    % results after
+    [rowi,rowj, s] = get_replacement_row_op_data();
+    matrix = do_replacement_row_op(matrix,rowi,rowj,s);
+    print_matrix(matrix);
+end
+%} ---------------------------------------------------------------------{%
+function matrix = get_matrix()
+    % Function Description:
+    %   This function will prompt user the number of rows and colums to
+    %   generate a size matrix given by user. Then it will ask for a minimum
+    %   and maximum number to genereate number in between inclusively. Returns
+    %   the generate matrix.
+    %
+    %
+    % Variables: 
+    %   + rows : the number of rows in the matrix
+    %   + cols : the number of columns in the matrix
+    %   + min : the minimum number to generate
+    %   + max : the maximum number to generate
+    %   + matrix : holds the new matrix
+    
+    % Ask user for number of rows,cols and min,max values
+    rows = input('Enter the number of rows in the matrix: ');
+    cols = input('Enter the number of columns in the matrix: ');
+    min = input('Enter the minimum random integer: ');
+    max = input('Enter the maximum random integer: ');
+    
+    %Generate matrix of rows x cols matrix with [min,max] entries
+    matrix = randi([min,max],rows,cols);
+end
+%} ---------------------------------------------------------------------{%
+
+function [] = print_matrix(mat)
+    % Function Description: 
+    %   This function will take in an argument of matrix type, and display the
+    %   context in the matrix and its description
+    %
+    % Input: 
+    %   + mat : contains the matrix 
+    % Prints out the matrix and descirption
+    fprintf('The matrix is: \n');
+    disp(mat);
+end
+%} ---------------------------------------------------------------------{%
+
+function [rowOper,scalar] = get_basic_row_op_data()
+    % Function Description:
+    %   This function prompts the user to enter the specified row to operate on
+    %   and the scalar to multiply the selected row with. 
+    %
+    % Variables:
+    %   + rowOper : it is the selcetd row to operate on
+    %   + scalar : the constant multiplier
+    
+    % Ask user for the row to operate on and the scalar
+    rowOper = input('Enter the row upon which to perform the row op: ');
+    scalar = input('Enter the constant multiplier for the row op: ');
+end
+%} ---------------------------------------------------------------------{%
+
+function matrix = do_basic_row_op(mat,rowi, s)
+    % Function Description:
+    %   This function will perform the basic row operation such as Ri = sRi
+    %   then return the matrix after operation
+    %
+    % Input: 
+    %   + mat : contains the matrix
+    %   + rowi : contains the row to operate on
+    %   + s : contains the scalar to multiply row with
+    % Output: 
+    %   + matrix : contains new matrix after operation
+    % perform row operatoin
+    mat(rowi,:) = mat(rowi,:)* s;
+    matrix = mat;
+end
+%} ---------------------------------------------------------------------{%
+
+function [i,j,scalar] = get_replacement_row_op_data()
+    % Function Description:
+    %   This function will ask user to input the selected 2 rows to operate
+    %   on,and ask user a constant multiplier
+    %
+    %
+    % Output:
+    %   i : holds the row that will be subsituted for
+    %   j : hodls the row that will be multiplied with scalar and added with
+    %   ith row
+    %   scalar : the constatn multiplier
+    
+    % Ask user for both rows to operate on and the scalar
+    i = input('Enter the number i of the row for the row op: ');
+    j = input('Enter the number j of the row for the row op:');
+    scalar = input('Enter the scalar multiplier for the row op:');
+
+
+end
+%} ---------------------------------------------------------------------{%
+
+function matrix2 = do_replacement_row_op(matrix,rowi,rowj,s)
+    % Function Descritption:
+    %   This functioon takes in matrix and uses rowi, and rowj to perform the
+    %   following operatino Ri = sRj + Ri. Then returns the new matrix
+    % 
+    % Input:
+    %   + matrox : contains the matrix
+    %   + i : holds the row at ith
+    %   + j : holds the row at jth
+    %   + s : contains the scalar
+    % Output:
+    %   + matrix2 : the new matrix after doing row replacement
+    
+    % Calucate Ri = sRj + Ri
+    matrix(rowi, : ) = matrix(rowj, : ).* s + matrix(rowi,:);
+    matrix2 = matrix;
+
+end
+

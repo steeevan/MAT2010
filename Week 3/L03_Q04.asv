@@ -1,0 +1,22 @@
+%Estevan Anguiano
+% L03_Q04
+
+clc
+
+%Ask for first initital
+first_init = input('Enter the first initial: ' ,"s");
+
+%Ask for second initital
+second_init = input('Enter the middle initial: ' ,"s");
+
+%Ask for third initital
+third_init = input('Enter the last initial: ' ,"s");
+
+%Enter the shift amount
+shift = input('Enter the shift amount: ');
+
+%Shift all initials
+shift1 = double('A') - 65;
+shift1
+%fprintf('The encrypted intitals are %s', );
+fprintf(' %s %s ', char(int16(second_init) + shift), char(int16(third_init) + shift));

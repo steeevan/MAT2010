@@ -1,0 +1,8 @@
+%Estevan Anguiano
+% L03_Q05
+
+clc
+
+%Ask user for score between 0 and 100
+score = input('Enter your score between 0 and 100: ');
+fprintf('Your score was an ?', (0 < score && score < 100))
